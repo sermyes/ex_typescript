@@ -1,0 +1,363 @@
+:root {
+  --font-base: 'Josefin Sans', sans-serif;
+  --font-title: Arial, Helvetica, sans-serif;
+  --color-bg-dark: rgb(38, 38, 38);
+  --color-bg-light: rgb(213, 229, 255);
+  --color-pg-dark: rgba(73, 73, 73, 0.6);
+  --color-dark: rgb(73, 73, 73);
+  --color-pg-light: rgba(255, 255, 255, 0.6);
+  --color-light: #fff;
+  --color-lightgrey: rgb(182, 180, 190);
+  --color-bg-accent-dark: #2d2d2d;
+  --color-bg-accent-light: #cacaca;
+  --color-accent: #f64435;
+  --color-shadow: 1px 1px 4px 2px rgba(150, 150, 150, 0.4);
+}
+
+* {
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-bg-dark) url('../assets/images/background_dark.png')
+    no-repeat 0% 0% / 100vw 30vh;
+  font-family: var(--font-base);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  font-size: 1.25rem;
+  margin: 0;
+  padding-top: 4rem;
+  font-size: 1.5rem;
+}
+
+body.light {
+  background: var(--color-bg-light) url('../assets/images/background_light.png')
+    no-repeat 0% 0% / 100vw 30vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  background: var(--bg-main-color);
+  border-bottom: 1px solid var(--bg-accent-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.header__title {
+  font-family: var(--font-title);
+  margin: 20px;
+  letter-spacing: 0.1em;
+  color: var(--color-pg-light);
+}
+
+.themeButton {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  position: absolute;
+  right: 15%;
+  top: 25%;
+  cursor: pointer;
+}
+
+.select-container {
+  display: flex;
+  justify-content: center;
+}
+
+.create-button,
+.dialog__add {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 2rem;
+  width: 5rem;
+  border-radius: 10%;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.create-button:hover,
+.dialog__add:hover {
+  transform: scale(1.03);
+}
+
+.document {
+  width: 70%;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 10px;
+  /* Firefox */
+  scrollbar-width: 6px;
+  background-color: var(--color-dark);
+  scrollbar-color: var(--color-bg-accent-dark);
+  scrollbar-face-color: var(--color-accent);
+}
+
+.document.light {
+  background-color: var(--color-light);
+  scrollbar-color: var(--color-bg-accent-light);
+}
+
+.document::-webkit-scrollbar {
+  /* Safari and Chrome */
+  background-color: var(--color-bg-accent-dark);
+  width: 6px;
+}
+
+.document::-webkit-scrollbar-thumb {
+  /* Safari and Chrome */
+  background-color: var(--color-accent);
+}
+
+.document.light::-webkit-scrollbar {
+  /* Safari and Chrome */
+  background-color: var(--color-bg-accent-light);
+}
+
+.footer {
+  text-align: center;
+}
+.footer p {
+  color: var(--color-lightgrey);
+  font-weight: 700;
+}
+
+/* select box */
+.select-panel {
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-image: none;
+  background-color: var(--color-dark);
+  cursor: pointer;
+}
+.select-panel.light {
+  background-color: var(--color-light);
+  color: #000;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  width: 6em;
+  height: 1.5em;
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+.select::after {
+  content: '\25BC';
+  font-size: 1.2rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0.3rem;
+  transition: 0.25s all ease;
+  pointer-events: none;
+}
+.select:hover::after {
+  color: var(--color-light);
+}
+.select.light::after {
+  color: rgba(0, 0, 0, 0.5);
+}
+.select.light:hover::after {
+  color: #000;
+}
+.select-panel {
+  font-family: var(--font-base);
+  font-size: 1rem;
+}
+.select-panel option {
+  padding: 3px;
+}
+
+/* dialog */
+.dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dialog__container {
+  display: flex;
+  flex-direction: column;
+  width: 32rem;
+  padding: 0.4rem;
+  box-shadow: var(--color-shadow);
+  background-color: var(--color-dark);
+}
+
+.dialog__close {
+  align-self: flex-end;
+  width: 24px;
+  height: 24px;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.dialog__close:hover > i {
+  font-size: 16px;
+}
+
+.dialog__close > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form__title,
+.form__contents {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.form__title > *,
+.form__contents > * {
+  margin-bottom: 5px;
+}
+
+#title,
+#url,
+#body {
+  padding: 4px;
+}
+
+#body {
+  resize: vertical;
+}
+
+.dialog__add {
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* page */
+.page {
+  padding: 0.8em;
+  margin: 0;
+}
+
+.page-item {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  pointer-events: all;
+  transition: transform 0.3s, opacity 0.3s;
+  margin-bottom: 15px;
+  cursor: move;
+  box-shadow: var(--color-shadow);
+}
+
+.page-item.target {
+  transform: scale(1.02);
+  border: 1px solid var(--color-accent);
+}
+
+.page-item.lifted {
+  opacity: 0.2;
+}
+
+.page-item__contents {
+  width: 100%;
+  padding: 20px;
+}
+
+.page-item__controls {
+  margin-right: 20px;
+}
+
+.close {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.close > i {
+  font-size: 16px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.close:hover > i {
+  font-size: 18px;
+}
+
+.todo {
+  margin-bottom: 30px;
+}
+
+.image,
+.video {
+  display: flex;
+  width: 100%;
+  height: 250px;
+}
+
+.image__container,
+.video__container {
+  flex: 60% 1 1;
+  margin-right: 5%;
+}
+
+.image__title,
+.video__title {
+  flex: 45% 1 1;
+}
+
+.image__container > *,
+.video__container > * {
+  width: 100%;
+  height: 100%;
+}
+
+.image__thumbnail {
+  background-size: cover;
+}
+
+/* page-item */
+.mute-children * {
+  pointer-events: none;
+}
